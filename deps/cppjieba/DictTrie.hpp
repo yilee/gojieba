@@ -143,7 +143,9 @@ class DictTrie {
     DictUnit node_info;
     for (size_t lineno = 0; getline(ifs, line); lineno++) {
       Split(line, buf, " ");
-      XCHECK(buf.size() == DICT_COLUMN_NUM) << "split result illegal, line:" << line;
+      if(buf.size() != DICT_COLUMN_NUM){
+        continue;
+      }
       MakeNodeInfo(node_info, 
             buf[0], 
             atof(buf[1].c_str()), 
